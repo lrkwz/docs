@@ -163,5 +163,5 @@ These setup instructions are specific to the _Articles_ example above. It assume
 5. Relation: Select **Article Translations** as the Related Collection and **Article** as the Related Field
     * The `article_translations.article` field was created during _Translation Collections_ setup above
 12. Options: **Languages Collection** is the collection created during _Translations_ setup above (we're using `languages`)
-    * **Language Primary Key Field** the Language Foreign Key field created during _Translation Collections_ setup above (we're using `language`)
+    * **Language Primary Key Field** the Language Foreign Key field created during _Translation Collections_ setup above (we're using `code`)
 :::
