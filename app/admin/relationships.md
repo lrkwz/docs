@@ -30,12 +30,12 @@ In this example the `directors` collection uses the default `id` primary key, wh
 
 Here are some screenshots that show the above process in more detail.
 
-<img src="../img/m2o/field.png" width="100">
-<img src="../img/m2o/interface.png" width="100">
-<img src="../img/m2o/name.png" width="100">
-<img src="../img/m2o/relation.png" width="100">
-<img src="../img/m2o/options.png" width="100">
-<img src="../img/m2o/done.png" width="100">
+[<img src="../img/m2o/field.png" width="100">](../img/m2o/field.png)
+[<img src="../img/m2o/interface.png" width="100">](../img/m2o/interface.png)
+[<img src="../img/m2o/name.png" width="100">](../img/m2o/name.png)
+[<img src="../img/m2o/relation.png" width="100"](../img/m2o/relation.png)
+[<img src="../img/m2o/options.png" width="100">](../img/m2o/options.png)
+[<img src="../img/m2o/done.png" width="100">](../img/m2o/done.png)
 
 ## One-to-Many
 
@@ -62,11 +62,11 @@ Technically, this process does not create a new field, it remotely manages the r
 
 Here are some screenshots that show the above process in more detail.
 
-<img src="../img/o2m/field.png" width="100">
-<img src="../img/o2m/interface.png" width="100">
-<img src="../img/o2m/name.png" width="100">
-<img src="../img/o2m/relation.png" width="100">
-<img src="../img/o2m/relation.png" width="100"> <!-- done -->
+[<img src="../img/o2m/field.png" width="100">](../img/o2m/field.png)
+[<img src="../img/o2m/interface.png" width="100">](../img/o2m/interface.png)
+[<img src="../img/o2m/name.png" width="100">](../img/o2m/name.png)
+[<img src="../img/o2m/relation.png" width="100">](../img/o2m/relation.png)
+[<img src="../img/o2m/done.png" width="100">](../img/o2m/done.png)
 
 ## Direction Matters
 
@@ -111,12 +111,12 @@ This setup is specific to the `movies → genres` (M2M) field. The following ste
 
 Here are some screenshots that show the above process in more detail.
 
-<img src="../img/m2m/create_junction.png" width="100">
-<img src="../img/m2m/junction.png" width="100">
-<img src="../img/m2m/interface.png" width="100">
-<img src="../img/m2m/relation.png" width="100">
-<img src="../img/m2m/options.png" width="100">
-<img src="../img/m2m/done.png" width="100">
+[<img src="../img/m2m/create_junction.png" width="100">](../img/m2m/create_junction.png)
+[<img src="../img/m2m/junction.png" width="100">](../img/m2m/junction.png)
+[<img src="../img/m2m/interface.png" width="100">](../img/m2m/interface.png)
+[<img src="../img/m2m/relation.png" width="100">](../img/m2m/relation.png)
+[<img src="../img/m2m/options.png" width="100">](../img/m2m/options.png)
+[<img src="../img/m2m/done.png" width="100">](../img/m2m/done.png)
 
 ![M2M](../img/m2m.png)
 
