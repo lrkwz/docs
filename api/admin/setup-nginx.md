@@ -1,46 +1,61 @@
 # NGINX Setup
 
-To get Directus working on NGINX servers all you need to do is ensure that traffic is routed to the correct files. Below are some sample configurations:
+To get Directus working on NGINX servers all you need to do is ensure that traffic is routed to the correct files. 
+Provided that you have api in `/var/www/directus/api` and the app in `/var/www/directus/app` below are some sample configurations:
 
 ### `directus.conf`
 
 ```
-location /api {
-  if (!-e $request_filename) {
-    rewrite ^/api/extensions/([^/]+) /api/api.php?run_extension=$1 last;
-  }
-  rewrite ^ /api/api.php?run_api_router=1 last;
+server {
+    listen 80;
+    server_name api.example.com;
+
+    root /var/www/directus/api/public;
+
+    location / {
+        gzip                on;
+        sendfile            on;
+        keepalive_timeout   60;
+        default_type        application/octet-stream;
+
+        client_max_body_size 100M;
+
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass   unix:/var/run/php5-fpm.sock;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        fastcgi_param SCRIPT_FILENAME /var/www/directus/api/public/index.php;
+        fastcgi_param DOCUMENT_ROOT   /var/www/directus/api/public;
+        internal;
+    }
 }
 
-location / {
-  try_files $uri $uri/ /index.php$args;
+server {
+    listen 80;
+    server_name cms.example.com;
+
+    root /var/www/directus/cms/app;
+    index index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ @rewrites;
+    }
+        
+    location @rewrites {
+        rewrite ^(.+)$ /index.html last;
+    }
+
+    location ~ /\.ht {
+        deny  all;
+    }
+    
+    location ~* \.(?:ico|css|js|gif|jpe?g|png|json)$ {
+        expires max;
+        add_header Pragma public;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+    }
 }
-
-location /thumbnail {
-  rewrite ^ /thumbnail/index.php last;
-}
-
-# Force file extensions to output as text
-location ~ ^/(media|storage)/.*\.(php|phps|php5|htm|shtml|xhtml|cgi.+)?$ {
-  add_header Content-Type text/plain;
-}
-
-# No direct access to extension files
-location ~* [^/]+/customs/extensions/api\.php$ {
-  return 403;
-}
-
-# No direct access to custom API endpoint files
-location ~* /customs/endpoints/ {
-  deny all;
-}
-
-include pagespeed.conf;
-```
-
-### `pagespeed.conf`
-
-```
-# Prevent PageSpeed module from rewriting/breaking the templates files
-pagespeed Disallow */app/**/*.html;
 ```
